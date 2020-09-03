@@ -1,0 +1,36 @@
+from github import Github
+import os
+from pprint import pprint
+
+print("Working")
+
+token = os.getenv('GITHUB_TOKEN','a50da25928f6f46f0a1c9b03f771e4953e412ccc')
+g = Github(token)
+repos = g.search_repositories(query="language:python")
+print(type(repos))
+
+lst = []
+for i in range(0,4):
+    lst.append(repos[i])
+for repo in lst:
+    print(repo)
+
+for repo in g.get_user().get_repos():
+    print(repo.name)
+
+repo = g.get_repo("upendrajha97/first_repo")
+print(repo.stargazers_count)
+
+traff = repo.get_views_traffic()
+print(traff)
+
+
+content = repo.get_contents("")
+print(content)
+
+#user = g.get_user()
+#repo = user.create_repo("new_repo_created")
+
+#repo.create_file("test.txt","commit","Let me write a line")
+
+print("Working")
